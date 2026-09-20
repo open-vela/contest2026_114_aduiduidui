@@ -1,148 +1,157 @@
-# contest2026_114_aduiduidui
+# 智瞳·伴读 — AI 儿童阅读陪伴终端
 
-👋 欢迎参加 **2026 首届 openvela AI 硬件开发者大赛**！
-
-这是组委会为你的队伍创建的**专属参赛仓库**（本仓为样例/模板，队伍编号 `114`；你看到的将是你自己的 `contest2026_<编号>_<队伍名>`）。比赛期间，你的全部参赛代码、打包产物与 AI Coding 日志都提交到这里。
-
-> 本仓既是「代码仓」，又内置了一键拉取整套 openvela 工程的 `repo` 清单（manifest）。你只需跟它打交道，**自始至终只动一个文件夹**。
-
----
-
-## 一、先读这些官方文档
-
-**通用（所有赛道必读）：**
-
-| 文档                                                                                                                                     | 用途                                           |
-| ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| [《大赛总览》](https://github.com/open-vela/docs/blob/dev-ai-contest-2026/zh-cn/contest_2026/contest_overview.md)                        | 赛道、流程、评分、资源，建议先通读             |
-| [《参赛代码提交指南》](https://github.com/open-vela/docs/blob/dev-ai-contest-2026/zh-cn/contest_2026/code_submission_guide.md)           | 仓库获取、提交流程、时间与权限（**以此为准**） |
-| [《AI Coding 日志归集与提交手册》](https://github.com/open-vela/docs/blob/dev-ai-contest-2026/zh-cn/contest_2026/ai_coding_log_guide.md) | 如何导出 AI 对话日志并提交到 `logs/`           |
-
-**按你的赛道选读（三选一）：**
-
-| 赛道                  | 教程导航                                                                                                                                                 |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 快应用 / 手表应用创新 | [快应用教程导航](https://github.com/open-vela/docs/blob/dev-ai-contest-2026/zh-cn/contest_2026/quickapp/quickapp_guide_index.md)                         |
-| AI 硬件产品创新       | [AI 硬件赛道教程导航](https://github.com/open-vela/docs/blob/dev-ai-contest-2026/zh-cn/contest_2026/ai_hardware/ai_hardware_guide_index.md)              |
-| 新硬件适配            | [新硬件适配赛道教程导航](https://github.com/open-vela/docs/blob/dev-ai-contest-2026/zh-cn/contest_2026/hardware_porting/hardware_porting_guide_index.md) |
-
----
-
-## 二、第一步：拉取完整工程
-
-用组委会提供的命令一键拉取「openvela 全量源码 + 你的专属仓」：
-
-```bash
-repo init -u https://github.com/open-vela/contest2026_114_aduiduidui \
-  -b dev-ai-contest-2026 -m contest2026_114_aduiduidui.xml
-repo sync -c -j8
-```
-
-同步后，你的整个仓库位于工作区的 `contest2026_114_aduiduidui/`，openvela 全量源码在外层（`nuttx/`、`apps/`、`packages/`、`vendor/` 等）。
-
----
-
-## 三、第二步：在哪里写代码
-
-**只在自己的仓目录 `contest2026_114_aduiduidui/` 里开发。** 不同作品形态放在对应子目录，manifest 会通过 `<linkfile>` 把它们**软链**到 openvela 编译树该在的位置——你不用手动 copy：
-
-| 作品形态 | 你的代码放这里             | 系统自动映射到                                 |
-| -------- | -------------------------- | ---------------------------------------------- |
-| 应用     | `app/hello_app/`           | `packages/demos/contest2026_114_hello_app`     |
-| 快应用   | `quickapp/hello_quickapp/` | `packages/apps/contest2026_114_hello_quickapp` |
-| 板级适配 | `board/contest_board/`     | `vendor/openvela/boards/contest2026_114_board` |
-
-> 用不到的形态目录可以删掉；新增作品时按同样规则加子目录，并在 `contest2026_114_aduiduidui.xml` 里补一条 `<linkfile>` 映射即可。**生产仓库（packages/nuttx/vendor 等）零改动。**
-
-建议仓库目录约定（便于评委定位）：
-
-```text
-app/ | quickapp/ | board/   # 你的作品代码
-logs/                       # AI Coding 日志（主动导出后提交，格式见 logs/README.md）
-README.md                   # 作品说明（提交前请改成你自己的，见第六节）
-```
-
-> 仓内附带了一个 `.gitignore.example`，给出了**编译产物**等不需要进仓的文件示例。如需启用，`cp .gitignore.example .gitignore` 后按需增删即可。**注意 `logs/` 下最终导出的 AI Coding 日志必须提交，不要忽略。**
->
-> `logs/` 的目录结构与提交格式见 [logs/README.md](logs/README.md)。
-
----
-
-## 四、第三步：编译与运行
-
-编译/运行步骤随作品形态不同而不同，请参考你所在赛道的教程导航：
-
-- 快应用 / 手表应用：[快应用教程导航](https://github.com/open-vela/docs/blob/dev-ai-contest-2026/zh-cn/contest_2026/quickapp/quickapp_guide_index.md)（含模拟器与开发板部署）。
-- AI 硬件产品创新：[AI 硬件赛道教程导航](https://github.com/open-vela/docs/blob/dev-ai-contest-2026/zh-cn/contest_2026/ai_hardware/ai_hardware_guide_index.md)（环境搭建、编译烧录、Skill 开发）。
-- 新硬件适配：[新硬件适配赛道教程导航](https://github.com/open-vela/docs/blob/dev-ai-contest-2026/zh-cn/contest_2026/hardware_porting/hardware_porting_guide_index.md)（BSP 移植、最小 NSH 基线）。
-
-子目录已通过 manifest 中的 `<linkfile>` 软链进 openvela 编译树，因此构建在 openvela 工作区**根目录**（即你这个仓的上一级）进行。openvela 使用 `build.sh` 作为统一入口，接收一个 **board config 路径**作为参数：
-
-```bash
-# 进入 openvela 工作区根目录（你的仓的上一级）
-cd ..
-
-# 通用语法：第一个参数是 board config 路径，第二个参数可以是 menuconfig / distclean 等
-./build.sh <board-config-path> [menuconfig|distclean] [-j8]
-```
-
-> 具体的 board config 路径、目标产物、模拟器/真机部署方式请以你所在赛道的教程导航为准。本仓 `app/` `quickapp/` `board/` 三个示例骨架对应的 Kconfig 选项可通过 `menuconfig` 启用。
-
----
-
-## 五、第四步：提交作品
-
-1. **fork** 你的专属仓 → 开发 → `git commit` 并推送 → 向专属仓发起 **Pull Request**，可**自行 review 并合入**（无需等组委会）。
-2. **AI Coding 日志**：与 AI 工具的对话会自动记录到本机 staging（不会自动上传），需你**主动导出/打包**选定会话到仓内 `logs/` 目录后一并提交。详见[《AI Coding 日志归集与提交手册》](https://github.com/open-vela/docs/blob/dev-ai-contest-2026/zh-cn/contest_2026/ai_coding_log_guide.md)。
-3. 若需改动 **nuttx 等公共仓库**，不在本仓改，而是 fork 对应公共仓、以 PR 提交到 `dev-ai-contest-2026` 分支，由组委会 review 后合入。
-
-> ⏰ **提交作品截止：9 月 20 日**。截止后统一收回 push 权限，仍可查看 / clone。
->
-> 获奖后再按要求将作品 PR 至 openvela 上游对应仓库（走标准 PR + CI 流程）。
-
-### 关于 PR 与 CLA
-
-- 本仓所有改动通过 **Pull Request** 合入（分支保护强制，可自行合入自己的 PR）。
-- 首次贡献需在[**官网签署 CLA**](https://openvela.com/#/community/cla)；PR 上会自动跑 `cla/signature` 检查，在官网签署成功后，在 PR 评论 `/check-cla` 复检即可通过。
-
----
-
-## 六、提交前：把本 README 改成你的作品说明
-
-本文件目前是组委会给的**使用说明书**。**作品提交前，请把它替换成你自己作品的说明**，方便评委快速了解你做了什么、怎么跑起来。建议至少包含以下内容：
-
-```markdown
-# <你的作品名>
+2026 openvela AI 硬件开发者大赛 参赛作品 | 队伍：啊对对队
 
 ## 一、作品简介
-<一句话/一段话说明这个作品是什么、解决什么问题、亮点在哪>
+
+把一本普通绘本放在摄像头下，"智瞳·伴读"就能看懂书页内容——孩子可以指着书问"这是什么？"，它会用自然语音回答、朗读、甚至声情并茂地讲故事。屏幕上住着一只"阅读精灵"，它会随着孩子的阅读进度成长升级，让阅读变成一场游戏。旨在为双职工家庭减轻孩子的教育压力。
+
+**核心亮点：**
+
+- **端侧感知 + 云端 AI + 本地交互三位一体**：摄像头（OV2640）看清绘本 → 云端 MiMo 大模型负责 OCR / 对话 / ASR / TTS → 本地屏幕 + 扬声器完成交互闭环
+- **阅读精灵成长系统**：LVGL 小狐狸 8 级成长形象，升级弹跳动画，成长值 NVS 持久化（断电平级不丢），情绪状态 Mood 文字显示
+- **图传弱网自适应**：HTTP 推流 5fps + 弱网自适应五件套（MSS 536、WiFi/LWIP 内存卸载 PSRAM、TCP 缓冲 16KB、EAGAIN 重试不重连、断线自动重连）
+- **主动关怀场景**：阅读时长监测 → 25 分钟护眼提醒 + 眼保健操引导
+
+**硬件构成：**
+
+| 硬件 | 型号 | 状态 |
+|------|------|:---:|
+| **主控** | ESP32-S3-EYE V2.2（8MB Flash + 8MB PSRAM） | ✅ |
+| **摄像头** | OV2640 (DVP) — 板载 | ✅ |
+| **麦克风** | I2S MEMS 数字麦克风 — 板载 (I2S0) | ✅ |
+| **显示屏** | ST7789 (240×320) — 板载 (SPI) | ✅ |
+| **扬声器** | MAX98357A 外接模块 + 3W 喇叭 (I2S1，复用 SD 卡槽引脚) | ✅ |
+| **WiFi** | 802.11 b/g/n — 板载 | ✅ |
+
+**功能状态：**
+
+✅ 稳定功能（已板上验证，演示可用）：
+
+| 功能 | 状态 |
+|------|:---:|
+| 开机提示音（本地合成，不依赖网络，兼音频链路自检）+ 开机问候 TTS | ✅ |
+| 麦克风实时音量条 | ✅ |
+| 阅读精灵（LVGL 小狐狸，8 级成长形象 + 升级弹跳动画，情绪状态 Mood 文字显示） | ✅ |
+| XP 成长值持久化（NVS，断电平级不丢） | ✅ |
+| HTTP 图传（电脑端实时查看画面，5fps 推流 + 弱网自适应） | ✅ |
+| WiFi 连接（2.4GHz）+ MiMo TTS 播放链 | ✅ |
+
+> ✅ 音频硬件状态（2026-09-17）：SD 卡槽 J2 飞线已补焊修复，开机音/TTS 恢复出声。音频全链验证履历：9-12 开机问候实听出声（有实拍视频留证）、9-15 串口零错误、9-17 修复后实测出声。注意：飞线曾因搬运震断（9-15），演示前请轻拿轻放，通电听一下开机琶音即硬件自检。
+
+⚠️ 未稳定功能（开发中，不建议演示）：
+
+| 功能 | 状态 |
+|------|:---:|
+| 短按 BOOT → 录音 → ASR 识别 → 云端对话 → TTS 回答 | ⚠️ 曾跑通，有未定位偶发崩溃 |
+| 长按 BOOT → 拍照 → 云端 OCR → TTS 朗读 | ⚠️ 曾跑通，有未定位偶发崩溃 |
+| 阅读时长监测 → 25 分钟护眼提醒 + 眼保健操引导 | ⚠️ 未充分验证 |
+| WiFi 健康看门狗 | ⚠️ 未充分验证 |
 
 ## 二、选题方向
-<快应用 / 手表应用创新 ｜ AI 硬件产品创新 ｜ 新硬件适配 ｜ 自定方向，并简述理由>
+
+**AI 硬件产品创新**：端侧感知 + 云端 AI + 本地交互三位一体的完整硬件产品，落地图形（LVGL 界面）、AI（MiMo Chat/ASR/TTS 云端链路）、多媒体（摄像头图传 + 音频输出）三项核心能力，内置阅读时长监测与护眼提醒的"主动 + 执行"场景设计，面向双职工家庭的陪读刚需。
+
+平台说明：本仓库固件基于 ESP-IDF（FreeRTOS）实现并已在 ESP32-S3-EYE 真机全链路验证，作为比赛作品的工程实现与演示载体。openvela (NuttX) 迁移路线图见 `docs/OPENVELA_MIGRATION.md`（含已验证项与待办项）。
 
 ## 三、目录结构
-<列出你这个仓里各目录/文件的作用，例如：>
-- `app/xxx/`        — <说明>
-- `board/xxx/`      — <说明>
-- `quickapp/xxx/`   — <说明>
-- `logs/`           — AI Coding 日志
-- `docs/` 或其他    — <说明>
 
-## 四、运行方式
-<拉取工程后，如何编译、烧录/部署、运行的完整步骤；最好能让评委照着一步步复现>
-
-## 五、AI Coding 使用说明
-<说明本作品如何借助 AI 辅助开发：
-- 在需求拆解 / 方案设计 / 编码 / 调试 / 文档等环节如何与 AI 协作；
-- AI 对开发效率或质量带来的实际帮助。
-完整对话日志见 logs/ 目录>
+```
+zhitong-budub/
+├── firmware-esp32/              # ESP32-S3-EYE 固件 (ESP-IDF v5.2.2)
+│   ├── main/                    # 主程序 + 语音/摄像头/UI/成长系统
+│   │   ├── main.c               # 入口 + WiFi/摄像头/按键/ASR/看门狗
+│   │   ├── voice.c              # TTS + 开机提示音 + I2S1 输出
+│   │   ├── cam_stream.c         # WebSocket JPEG 推流
+│   │   ├── chat_client.c        # MiMo Chat API
+│   │   ├── ocr_reader.c         # 绘本 OCR
+│   │   ├── reading_manager.c    # 阅读状态机 + 25 分钟提醒
+│   │   ├── fox_companion.cpp    # 阅读精灵 (LVGL)
+│   │   ├── xp_system.cpp        # 成长值持久化
+│   │   ├── ui_layout.cpp        # 界面布局
+│   │   └── secrets.h.example    # 凭据模板（复制为 secrets.h 填写）
+│   ├── components/              # esp_camera + lvgl
+│   ├── managed_components/      # esp_jpeg（随包附带，离线也能编译）
+│   ├── partitions.csv           # 自定义分区 (2MB app)
+│   ├── sdkconfig.defaults       # 关键配置 (软件 AES + MSS 536 图传弱网定案)
+│   └── docs/hardware/           # 原理图、接线标注图
+├── skills/                      # 大赛 Skill 交付 (×2)
+│   ├── reading-companion.md     # 绘本伴读 Skill
+│   └── eye-care-reminder.md     # 护眼提醒 Skill
+├── logs/                        # AI 开发日志（大赛要求，凭据已脱敏）
+│   ├── 智瞳伴读_AI开发日志_20260704-0803.md
+│   └── 智瞳伴读_AI开发日志_20260804-0916.md
+└── docs/
+    ├── HARDWARE.md              # 硬件接线总表
+    ├── IO_pinout_table.md       # 引脚复用明细
+    ├── TTS_DESIGN.md            # 语音链路设计 (含踩坑记录)
+    ├── OPENVELA_MIGRATION.md    # openvela 迁移路线图
+    ├── DEFENSE.md               # 答辩要点
+    └── test_mimo.py             # MiMo API 电脑侧调试脚本
 ```
 
-> 提示：将会根据「作品本身 + 你的 README 说明 + `logs/` 里的 AI Coding 日志」来理解和评估你的作品，README 写清楚很重要。
+## 四、运行方式
 
----
+需要 ESP-IDF v5.2.x（Windows PowerShell 环境，`export.ps1` 后执行）：
 
-## 附：仓库命名规范
+```bash
+cd firmware-esp32
+cp main/secrets.h.example main/secrets.h   # 填入 MiMo key + WiFi
+idf.py build                               # 编译
+idf.py -p COM3 flash                       # 烧录 (板子接哪个串口填哪个)
+```
 
-`contest2026_<编号>_<队伍名>` — 编号三位零填充；队名 slug（全小写、英文/拼音、连字符）。例：`contest2026_114_aduiduidui`。
-（仓库由组委会统一创建，**每队仅一个仓**，无需自行命名。）
+要点：
+
+- ESP32-S3 只支持 2.4GHz WiFi，热点请固定 2.4GHz 频段（iPhone 开"最大兼容性"）
+- `sdkconfig.defaults` 已含关键定案：`CONFIG_MBEDTLS_HARDWARE_AES=n`（软件 AES，HW AES + PSRAM TLS 缓冲会耗尽 DMA 池），勿改
+- 图传弱网定案（2026-09-16）：MSS 536（环境会周期性丢大 TCP 段）+ WiFi/LWIP 内存卸载进 PSRAM + TCP 收发缓冲 16KB + 5fps 限速推流；send 遇 EAGAIN 不再关连接，改 5ms 间隔重试（1s 上限）；网页断线 1.5s 自动重连。详见 docs/DEFENSE.md 创新点
+- 演示前重启手机热点：热点抽风会导致 TTS/ASR 超时（DNS/TLS 随机失败）
+- 音频走 SD 卡槽飞线（I2S1，TF 卡槽 J2 焊点），曾因搬运震断（9-15，9-17 已补焊修复）——演示前听一下开机琶音自检；若现场再断，跳过音频环节即可（其余功能不受影响）
+
+引脚映射摘要：
+
+| 外设 | 引脚 |
+|------|------|
+| 摄像头 OV2640 | SCCB: 4/5, XCLK: 15, PCLK: 13, VSYNC: 6, HREF: 7, D0-7: 11/9/8/10/12/18/17/16 |
+| LCD ST7789 (SPI) | SCLK: 21, MOSI: 47, CS: 44, DC: 43, RST: 45 |
+| 麦克风 (I2S0) | DIN: 2, BCLK: 41, WS: 42 |
+| 扬声器 (I2S1) | BCLK: 39, WS: 38, DOUT: 40（复用 SD 卡槽焊点，见 docs/HARDWARE.md） |
+| 按键 | BOOT: GPIO0（短按 ASR / 长按 OCR） |
+
+云端服务：
+
+| 项目 | 值 |
+|------|-----|
+| 端点 | `https://token-plan-cn.xiaomimimo.com/v1/chat/completions` |
+| 聊天 | `mimo-v2.5` |
+| 语音识别 | `mimo-v2.5-asr` |
+| 语音合成 | `mimo-v2.5-tts`（voice: 冰糖） |
+| 认证 | `Authorization: Bearer <你的 key>`（key 在 main/secrets.h，勿提交公开仓库） |
+
+## 五、AI Coding 使用说明
+
+本作品全程采用 AI Coding 开发（Claude Code），AI 参与需求拆解、方案设计、编码、调试与文档撰写全流程：
+
+| 环节 | 协作方式 |
+|------|---------|
+| 方案设计 | AI 产出语音链路（单写者队列 + 代际抢断）、图传弱网策略、成长系统数据模型等设计（见 docs/） |
+| 编码 | AI 编写驱动与业务代码，人工编译、烧录与真机实测反馈 |
+| 调试 | AI 参与疑难排障：硬件 AES 的 DMA 池耗尽定位、lwip 慢启动致大包卡死、视频流弱网五件套对策、音频飞线 A/B 测试定位 |
+| 文档 | 全部技术文档、答辩材料、README 由 AI 起草迭代 |
+
+交付物：
+
+- **大赛 Skill ×2**（skills/ 目录）：reading-companion（绘本伴读场景）、eye-care-reminder（护眼提醒场景），Markdown 形式、可复用
+- **AI Coding 完整对话日志 ×2**（logs/ 目录）：2026-07-04 ~ 2026-08-03、2026-08-04 ~ 2026-09-16，含逐日开发摘要与关键会话节选，凭据已脱敏
+
+AI 对开发效率的实际帮助：排障类问题多数一次定位根因（如上表调试环节案例），"烧录—实测—反馈"循环显著提速，使 4 名大一学生在两个多月内完成摄像头 / 屏幕 / 麦克风 / 功放 / WiFi / 云端 AI 六条链路的真机打通。
+
+## 团队
+
+- 队伍名称: 啊对对队
+- 成员: 古苑婷、陈子宁、陈心妍、梁敏
+
+## 开源协议
+
+Apache 2.0（见 LICENSE）
