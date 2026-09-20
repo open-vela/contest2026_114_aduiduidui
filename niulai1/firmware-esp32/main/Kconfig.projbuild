@@ -1,0 +1,42 @@
+menu "ZhiTong network and MiMo settings"
+
+config ZHITONG_WIFI_SSID
+    string "Wi-Fi SSID"
+    default ""
+    help
+        Wi-Fi network used by ASR/TTS. Keep real credentials out of source files.
+
+config ZHITONG_WIFI_PASSWORD
+    string "Wi-Fi password"
+    default ""
+    help
+        Password for CONFIG_ZHITONG_WIFI_SSID.
+
+config ZHITONG_MIMO_API_KEY
+    string "MiMo API key"
+    default ""
+    help
+        Token used by both ASR and TTS HTTP requests. Configure it with
+        idf.py menuconfig and never commit a populated sdkconfig.
+
+config ZHITONG_MIMO_API_URL
+    string "MiMo Chat/vision endpoint"
+    default "https://token-plan-cn.xiaomimimo.com/v1/chat/completions"
+    help
+        OpenAI-compatible endpoint used by ASR, Chat, TTS and OCR.
+
+config ZHITONG_ENABLE_STARTUP_GREETING
+    bool "Play the startup TTS greeting"
+    default n
+    help
+        Disabled by default so boot and hardware tests do not unexpectedly
+        consume network bandwidth or play audio.
+
+config ZHITONG_ENABLE_PET_TEST
+    bool "Enable automatic XP/fox demo"
+    default n
+    help
+        Development-only behavior that adds XP every second and cycles levels.
+        Keep disabled in normal firmware.
+
+endmenu

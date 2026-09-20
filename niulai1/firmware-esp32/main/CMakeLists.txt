@@ -1,0 +1,31 @@
+idf_component_register(
+    SRCS
+        "main.c"
+        "fox_companion.cpp"
+        "xp_system.cpp"
+        "ui_layout.cpp"
+        "pet_test.c"
+        "cam_stream.c"
+        "voice.c"
+        "chat_client.c"
+        "ocr_reader.c"
+        "reading_manager.c"
+    INCLUDE_DIRS "."
+    REQUIRES
+        freertos
+        nvs_flash
+        esp_wifi
+        esp_netif
+        esp_event
+        lwip
+        esp_camera
+        driver
+        esp_lcd
+        spi_flash
+        esp_timer
+        esp_http_client
+        esp_http_server
+        mbedtls
+        lvgl
+        esp_mm
+)
